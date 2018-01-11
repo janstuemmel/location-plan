@@ -1,1 +1,1 @@
-module.exports = require('./lib/LocationPlanViewer');
+module.exports = require('./lib/Viewer');

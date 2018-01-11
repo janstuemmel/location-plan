@@ -19,6 +19,7 @@ describe('Canvas', () => {
     canvas = plan.get('canvas');
   });
 
+
   it('should draw rect', () => {
 
     // when
@@ -32,9 +33,9 @@ describe('Canvas', () => {
   it('should emit element.add event', done => {
 
     // then
-    plan.get('emitter').on('element.add', context => {
+    plan.get('emitter').on('element.add', element => {
 
-      expect(context.element).to.be.not.undefined;
+      expect(element).to.be.not.undefined;
       done();
     });
 
@@ -46,45 +47,15 @@ describe('Canvas', () => {
   it('should emit element.added event', done => {
 
     // then
-    plan.get('emitter').on('element.added', context => {
+    plan.get('emitter').on('element.added', element => {
 
-      expect(context.element).to.be.not.undefined;
-      expect(context.gfx).to.be.not.undefined;
+      expect(element).to.be.not.undefined;
+      expect(element.gfx).to.be.not.undefined;
       done();
     });
 
     // when
     const rect = canvas.addRect(RECT);
   });
-
-
-  it('should emit render.<type> event', done => {
-
-    // then
-    plan.get('emitter').on('render.rect', context => {
-
-      expect(context.element).to.be.not.undefined;
-      done();
-    });
-
-    // when
-    const rect = canvas.addRect(RECT);
-  });
-
-
-  it('should emit render.<type> event', done => {
-
-    // then
-    plan.get('emitter').on('rendered.rect', context => {
-
-      expect(context.element).to.be.not.undefined;
-      expect(context.gfx).to.be.not.undefined;
-      done();
-    });
-
-    // when
-    const rect = canvas.addRect(RECT);
-  });
-
 
 });
