@@ -4,27 +4,58 @@ import LocationPlanViewer from '../../';
 
 describe('LocationPlanViewer', () => {
 
-  var testContainer, locationPlanViewer, elementFactory, canvas, elementRegistry;
+  var testContainer;
 
   beforeEach( function () {
     testContainer = TestContainer.get(this);
-    locationPlanViewer = new LocationPlanViewer(testContainer);
-    elementFactory = locationPlanViewer.get('elementFactory');
-    canvas = locationPlanViewer.get('canvas');
-    elementRegistry = locationPlanViewer.get('elementRegistry');
   });
 
 
   it('should create element', () => {
 
     // given
-    var shape = elementFactory.createShape({ width: 100, height: 100, x: 10, y: 10, id: 'testShape' });
+    const plan = new LocationPlanViewer(testContainer);
 
     // when
-    canvas.addShape(shape, canvas.getRootElement());
+    const eventEmitter = plan.get('emitter');
 
     // then
-    expect(elementRegistry.get('testShape')).to.be.not.undefined;
+    expect(eventEmitter).to.be.not.undefined;
+    expect(eventEmitter.on).to.be.not.undefined;
+    expect(eventEmitter.emit).to.be.not.undefined;
+  });
+
+
+  it('should listen on events', done => {
+
+    // given
+    const plan = new LocationPlanViewer(testContainer);
+    const emitter = plan.get('emitter');
+
+    // then
+    emitter.on('test.event', done);
+
+    // when
+    emitter.emit('test.event');
+  });
+
+
+  it('should draw rect', () => {
+
+    // given
+    const plan = new LocationPlanViewer(testContainer);
+    const canvas = plan.get('canvas');
+
+    // when
+    const rect = canvas.addRect({
+      x: 10,
+      y: 10,
+      width: 100,
+      height: 100
+    });
+
+    // then
+    expect(rect).to.be.not.undefined;
   });
 
 });
