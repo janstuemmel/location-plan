@@ -15,6 +15,13 @@ module.exports = function(karma) {
     ],
 
     files: [
+
+      // TODO: search another svg library or
+      // implement draggable and panzoom natively
+      { pattern: 'node_modules/svg.js/dist/svg.js', watched: false },
+      { pattern: 'node_modules/svg.draggable.js/dist/svg.draggable.js', watched: false },
+      { pattern: 'node_modules/svg.panzoom.js/dist/svg.panzoom.js', watched: false },
+
       { pattern: 'node_modules/diagram-js/assets/**', watched: false },
 
       'test/spec/**/*Spec.js'
