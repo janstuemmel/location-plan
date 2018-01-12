@@ -14,10 +14,8 @@
   "author": "Jan Stümmel",
   "license": "MIT",
   "dependencies": {
-    "diagram-js": "^0.27.2",
     "didi": "^1.0.3",
     "lodash": "^4.17.4",
-    "snapsvg": "^0.5.1",
     "svg.draggable.js": "^2.2.1",
     "svg.panzoom.js": "^1.2.0",
     "svg.resize.js": "^1.4.1",
