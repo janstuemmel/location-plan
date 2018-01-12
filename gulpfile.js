@@ -23,9 +23,11 @@ gulp.task('test', function() {
   Karma(true);
 })
 
-gulp.task('test-auto', function() {
+gulp.task('watch', function() {
   Karma(false);
 });
+
+gulp.task('default', [ 'watch' ]);
 
 gulp.task('build', () => {
   return bundle('./index.js', 'bundle.js', './build', false);
